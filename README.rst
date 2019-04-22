@@ -32,30 +32,6 @@ Mạch nguyên lý
 
 .. image:: 10.Schematic/Schematic_schem.png
 
-Kết quả
-=======
-
-* Giao diện điều khiển trên Blynk App:
-
-.. image:: 30.BlynkApp/ConfigDevice.jpg
-    :width: 40%
-.. image:: 30.BlynkApp/Blynk.jpg
-    :width: 40%
-
-
-.. image:: 30.BlynkApp/LCD.jpg
-    :width: 30%
-.. image:: 30.BlynkApp/Slider.jpg
-    :width: 30%
-.. image:: 30.BlynkApp/Load1.jpg
-    :width: 30%
-.. image:: 30.BlynkApp/Load2.jpg
-    :width: 30%
-.. image:: 30.BlynkApp/Load3.jpg
-    :width: 30%
-.. image:: 30.BlynkApp/Buzzer.jpg
-    :width: 30%
-
 Chương trình điều khiển
 =======================
 
@@ -73,3 +49,27 @@ Giải thích hoạt động của code
 * Điều khiển các thiết bị thông qua các nút nhấn trên Blynk App
 
 * Cảnh báo quá áp qua nút nhấn Buzzer (thiết bị gửi cảnh báo lên và từ App gửi cảnh báo về).
+
+Kết quả
+=======
+
+.. * Giao diện điều khiển trên Blynk App:
+
+.. .. image:: 30.BlynkApp/ConfigDevice.jpg
+..     :width: 40%
+.. .. image:: 30.BlynkApp/Blynk.jpg
+..     :width: 40%
+
+
+.. .. image:: 30.BlynkApp/LCD.jpg
+..     :width: 30%
+.. .. image:: 30.BlynkApp/Slider.jpg
+..     :width: 30%
+.. .. image:: 30.BlynkApp/Load1.jpg
+..     :width: 30%
+.. .. image:: 30.BlynkApp/Load2.jpg
+..     :width: 30%
+.. .. image:: 30.BlynkApp/Load3.jpg
+..     :width: 30%
+.. .. image:: 30.BlynkApp/Buzzer.jpg
+..     :width: 30%
