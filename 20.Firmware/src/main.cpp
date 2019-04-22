@@ -173,7 +173,7 @@ void updateBuzzerAlarm(bool isAlarm) {
 
 void displayLCDVirtual(PowerMetter powerMetter) {
     String line1 = String(powerMetter.current) + "A-" + String(powerMetter.voltage) + "V";
-    String line2 = String(powerMetter.power) + "A-" + String(powerMetter.energy) + "W";
+    String line2 = String(powerMetter.power) + "J-" + String(powerMetter.energy) + "W";
 
     lcdVirtual.clear();
     lcdVirtual.print(0, 0, line1);
@@ -182,7 +182,7 @@ void displayLCDVirtual(PowerMetter powerMetter) {
 
 void displayLCD(PowerMetter powerMetter) {
     String line1 = String(powerMetter.current) + "A-" + String(powerMetter.voltage) + "V";
-    String line2 = String(powerMetter.power) + "A-" + String(powerMetter.energy) + "W";
+    String line2 = String(powerMetter.power) + "J-" + String(powerMetter.energy) + "W";
 
     lcd.clear();
     lcd.setCursor(0, 0);

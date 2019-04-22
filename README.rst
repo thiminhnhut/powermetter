@@ -32,6 +32,30 @@ Mạch nguyên lý
 
 .. image:: 10.Schematic/Schematic_schem.png
 
+Kết quả
+=======
+
+* Giao diện điều khiển trên Blynk App:
+
+.. image:: 30.BlynkApp/ConfigDevice.jpg
+    :width: 40%
+.. image:: 30.BlynkApp/Blynk.jpg
+    :width: 40%
+
+
+.. image:: 30.BlynkApp/LCD.jpg
+    :width: 30%
+.. image:: 30.BlynkApp/Slider.jpg
+    :width: 30%
+.. image:: 30.BlynkApp/Load1.jpg
+    :width: 30%
+.. image:: 30.BlynkApp/Load2.jpg
+    :width: 30%
+.. image:: 30.BlynkApp/Load3.jpg
+    :width: 30%
+.. image:: 30.BlynkApp/Buzzer.jpg
+    :width: 30%
+
 Chương trình điều khiển
 =======================
 
@@ -39,10 +63,13 @@ Chương trình điều khiển
 
 * File `config.h <https://github.com/thiminhnhut/powermetter/blob/master/20.Firmware/src/config.h>`_
 
-* File chương trình chính: `main.cpp <https://github.com/thiminhnhut/powermetter/tree/master/20.Firmware/src>`_
+* File chương trình chính: `main.cpp <https://github.com/thiminhnhut/powermetter/tree/master/20.Firmware/src/main.cpp>`_
 
 Giải thích hoạt động của code
 =============================
 
-Kết quả
-=======
+* Thông tin hiển thị lên LCD trên Blynk App và LCD thật.
+
+* Điều khiển các thiết bị thông qua các nút nhấn trên Blynk App
+
+* Cảnh báo quá áp qua nút nhấn Buzzer (thiết bị gửi cảnh báo lên và từ App gửi cảnh báo về).
