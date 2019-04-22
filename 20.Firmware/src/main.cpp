@@ -21,13 +21,12 @@ ControlDigitalOutput buzzer(PIN_BUZZER, ACTIVE_BUZZER);
 RandomLib randomLib;
 BlynkTimer timer;
 
-#define PIN_LCD_VIRTUAL V0
+#define PIN_GAUGE_CURRENT V0
+#define PIN_GAUGE_VOLTAGE V3
 #define PIN_CURRENT_SETUP V1
 #define PIN_CURRENT_ALRAM V2
 // char auth[] = "3319436c3aa0422a99a14802dd51fef7";
 char auth[] = "c5185cf2159f472abef8115bb8f4bb25";
-
-WidgetLCD lcdVirtual(PIN_LCD_VIRTUAL);
 
 struct PowerMetter {
     float voltage;
@@ -47,7 +46,7 @@ bool checkCurrentValid(float _current);
 void updateBuzzerAlarm(bool isAlarm);
 
 void displayLCD(PowerMetter powerMetter);
-void displayLCDVirtual(PowerMetter powerMetter);
+void displayGaugeVirtual(PowerMetter powerMetter);
 
 void setup() {
 
@@ -86,9 +85,6 @@ void setup() {
 
     // Connect Blynk server
     Blynk.config(auth);
-
-    // clear lcdVirtual
-    lcdVirtual.clear();
 
     timer.setInterval(TIME_UPDATE_DATA, updatePowerMetter);
 }
@@ -151,7 +147,7 @@ void updatePowerMetter() {
         updateBuzzerAlarm(false);
     }
 
-    displayLCDVirtual(powerMetter);
+    displayGaugeVirtual(powerMetter);
     displayLCD(powerMetter);
 }
 
@@ -171,13 +167,9 @@ void updateBuzzerAlarm(bool isAlarm) {
     Blynk.virtualWrite(PIN_CURRENT_ALRAM, isAlarm);
 }
 
-void displayLCDVirtual(PowerMetter powerMetter) {
-    String line1 = String(powerMetter.current) + "A-" + String(powerMetter.voltage) + "V";
-    String line2 = String(powerMetter.power) + "J-" + String(powerMetter.energy) + "W";
-
-    lcdVirtual.clear();
-    lcdVirtual.print(0, 0, line1);
-    lcdVirtual.print(0, 1, line2);
+void displayGaugeVirtual(PowerMetter powerMetter) {
+    Blynk.virtualWrite(PIN_GAUGE_CURRENT, powerMetter.current);
+    Blynk.virtualWrite(PIN_GAUGE_VOLTAGE, powerMetter.voltage);
 }
 
 void displayLCD(PowerMetter powerMetter) {

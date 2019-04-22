@@ -57,11 +57,13 @@ Kết quả
 
 .. .. image:: 30.BlynkApp/ConfigDevice.jpg
 ..     :width: 40%
-.. .. image:: 30.BlynkApp/Blynk.jpg
+.. .. image:: 30.BlynkApp/BlynkUI2.jpg
 ..     :width: 40%
 
 
-.. .. image:: 30.BlynkApp/LCD.jpg
+.. .. image:: 30.BlynkApp/GaugeCurrent.jpg
+..     :width: 30%
+.. .. image:: 30.BlynkApp/GaugeVoltage.jpg
 ..     :width: 30%
 .. .. image:: 30.BlynkApp/Slider.jpg
 ..     :width: 30%
