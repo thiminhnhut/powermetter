@@ -8,15 +8,12 @@
 #include <ControlDigitalOutput.h>
 #include <RandomLib.h>
 
-#ifdef PZEM004T
 #include <PZEM004T.h>
-HardwareSerial hwserial(UART0);
-PZEM004T pzem(&hwserial);
-IPAddress ip(192, 168, 1, 1);
-#endif
+PZEM004T pzem(&Serial);
+IPAddress ip(192,168,1,1);
 
-LiquidCrystal_I2C lcd(0x27, 20, 4);
-WiFiSupportESP8266 wifiSupport(&debug_port, LED_BUILTIN, LOW);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+WiFiSupportESP8266 wifiSupport(LED_BUILTIN, LOW);
 ControlDigitalOutput buzzer(PIN_BUZZER, ACTIVE_BUZZER);
 RandomLib randomLib;
 BlynkTimer timer;
@@ -49,44 +46,33 @@ void displayLCD(PowerMetter powerMetter);
 void displayGaugeVirtual(PowerMetter powerMetter);
 
 void setup() {
-
     buzzer.off();
-
-#ifdef PZEM004T
-    hwserial.swap();
-#endif
-
-    debug_port.begin(BAUD_RATE);
-
-#ifdef PZEM004T
-    debug_port.println("Define PZEM004T");
-#else
-    debug_port.println("Not define PZEM004T");
-#endif
-
-#ifdef PZEM004T
-    // Connect PZEM module
-    bool pzemrdy = false;
-    while (!pzemrdy) {
-        debug_port.println("Connecting to PZEM...");
-        pzemrdy = pzem.setAddress(ip);
-        delay(1000);
-    }
-#endif
-
-    // Wait for connect wifi wifi smart config
-    if (!wifiSupport.isSmartConfig(TIMEOUT)) {
-        ESP.restart();
-    }
 
     lcd.begin();
     lcd.backlight();
     lcd.clear();
 
+    lcd.print("Init PZEM");
+    pzem.setAddress(ip);
+
+    lcd.clear();
+    lcd.print("Connect Wifi");
+    // Wait for connect wifi wifi smart config
+    if (!wifiSupport.isSmartConfig(TIMEOUT)) {
+        ESP.restart();
+    }
+    // wifiSupport.isConnected("Thi Nhut", "thiminhnhut", TIMEOUT);
+
+    lcd.clear();
+    lcd.print("Connect Blynk");
+
     // Connect Blynk server
     Blynk.config(auth);
 
     timer.setInterval(TIME_UPDATE_DATA, updatePowerMetter);
+
+    lcd.print("Finish");
+    lcd.clear();
 }
 
 void loop() {
@@ -94,7 +80,6 @@ void loop() {
     timer.run();
 }
 
-#ifdef PZEM004T
 PowerMetter getPowerMetter() {
     PowerMetter powerMetter;
 
@@ -120,21 +105,6 @@ PowerMetter getPowerMetter() {
 
     return powerMetter;
 }
-#else
-PowerMetter getPowerMetter() {
-    PowerMetter powerMetter;
-
-    powerMetter.voltage = randomLib.getNumberFloat(210.0, 250.0);
-
-    powerMetter.current = randomLib.getNumberFloat(0.0, 5.0);
-
-    powerMetter.power = randomLib.getNumberFloat(0.0, 1000.0);
-
-    powerMetter.energy = randomLib.getNumberFloat(0.0, 1000.0);
-
-    return powerMetter;
-}
-#endif
 
 void updatePowerMetter() {
     PowerMetter powerMetter = getPowerMetter();
@@ -173,8 +143,8 @@ void displayGaugeVirtual(PowerMetter powerMetter) {
 }
 
 void displayLCD(PowerMetter powerMetter) {
-    String line1 = String(powerMetter.current) + "A-" + String(powerMetter.voltage) + "V";
-    String line2 = String(powerMetter.power) + "J-" + String(powerMetter.energy) + "W";
+    String line1 = "Dien ap:" + String(powerMetter.voltage) + "V";
+    String line2 = "Dong dien:" + String(powerMetter.current) + "A";
 
     lcd.clear();
     lcd.setCursor(0, 0);
@@ -189,7 +159,7 @@ BLYNK_CONNECTED() {
 
 BLYNK_WRITE(PIN_CURRENT_SETUP) {
     float current = param.asFloat();
-    debug_port.println(current);
+    // debug_port.println(current);
     setMaxCurrent(current);
 }
 

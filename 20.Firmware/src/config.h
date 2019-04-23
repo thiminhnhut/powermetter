@@ -13,11 +13,6 @@
 #define TIMEOUT                     60000
 #define TIME_UPDATE_DATA            2000L
 
-// #define PZEM004T
-#ifdef PZEM004T
-#define debug_port                  Serial1
-#else
 #define debug_port                  Serial
-#endif
 
 #endif
