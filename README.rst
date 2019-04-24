@@ -1,8 +1,6 @@
 Đo điện năng tiêu thụ của thiết bị điện AC
 ##########################################
 
-* **Thực hiện:**
-
 * **Thời gian: Ngày 21 tháng 04 năm 2019**
 
 .. sectnum::
