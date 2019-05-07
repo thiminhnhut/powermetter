@@ -22,8 +22,8 @@ BlynkTimer timer;
 #define PIN_GAUGE_VOLTAGE V3
 #define PIN_CURRENT_SETUP V1
 #define PIN_CURRENT_ALRAM V2
-// char auth[] = "3319436c3aa0422a99a14802dd51fef7";
-char auth[] = "c5185cf2159f472abef8115bb8f4bb25";
+char auth[] = "3319436c3aa0422a99a14802dd51fef7";
+// char auth[] = "c5185cf2159f472abef8115bb8f4bb25";
 
 struct PowerMetter {
     float voltage;
