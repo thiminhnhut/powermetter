@@ -1,0 +1,45 @@
+%% Build với XeLaTeX trên TexLive 2015
+\documentclass[13pt,border=12pt]{standalone}
+\usepackage[utf8]{vietnam}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{flowchart}
+\usetikzlibrary{arrows}
+%\usepackage{hyperref}
+%\hypersetup{pdfpagemode=FullScreen}
+
+\newcommand{\unit}[1]{~#1}
+\begin{document}
+	\begin{tikzpicture}[>=latex']
+		\def\smbwd{6cm}
+		
+		\node (nguoncapvidieukhien) at (0, 0) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Nguồn AC/DC \\ \(220VAC/5VDC\)};
+
+		\node (server) at (0, -2.5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Server \\ Server Blynk};
+
+		\node (app) at (0, -5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {App điều khiển trên điện thoại \\ App Blynk};
+
+		\node (vidieukhien) at (6, 0) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Vi điều khiển \\ NodeMCU 1.0};
+
+		\coordinate (point1) at (5, -0.75);
+
+		\node (cambienpzem004t) at (12, 0) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Cảm biến dòng điện và điện áp \\ Module PZEM004T};
+
+		\node (thietbidien) at (18, 0) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Thiết bị điện};
+
+		\node (manhinhhienthi) at (12, -2.5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Màn hình hiển thị \\ LCD 16x02};
+
+		\node (relay) at (12, -5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Điều khiển thiết bị \\ Module Relay 5VDC};
+
+		\node (chuongbao) at (12, -7.5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Cảnh báo quá tải \\ Chuông báo 5VDC};
+
+		\draw[->] (nguoncapvidieukhien) -- (vidieukhien);
+		\draw[->] (vidieukhien) |- (manhinhhienthi);
+		\draw[->] (vidieukhien) |- (relay);
+		\draw[->] (relay) -| (thietbidien);
+		\draw[->] (vidieukhien) |- (chuongbao);
+		\draw[<->] (point1) |- (server);
+		\draw[->] (server) -- (app);
+		\draw[<->] (vidieukhien) -- (cambienpzem004t);
+		\draw[<-] (cambienpzem004t) -- (thietbidien);
+	\end{tikzpicture}
+\end{document} 
