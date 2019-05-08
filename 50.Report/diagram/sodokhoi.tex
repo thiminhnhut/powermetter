@@ -1,13 +1,9 @@
-%% Build với XeLaTeX trên TexLive 2015
 \documentclass[13pt,border=12pt]{standalone}
 \usepackage[utf8]{vietnam}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{flowchart}
 \usetikzlibrary{arrows}
-%\usepackage{hyperref}
-%\hypersetup{pdfpagemode=FullScreen}
 
-\newcommand{\unit}[1]{~#1}
 \begin{document}
 	\begin{tikzpicture}[>=latex']
 		\def\smbwd{6cm}
@@ -32,6 +28,10 @@
 
 		\node (chuongbao) at (12, -7.5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Cảnh báo quá tải \\ Chuông báo 5VDC};
 
+		\node (nguoncongsuat) at (19, -7.5) [draw, process, align=center, minimum width=4cm, minimum height=1.5cm] {Nguồn AC cấp cho thiết bị};
+		
+		\coordinate (point2) at (19, -0.75);
+
 		\draw[->] (nguoncapvidieukhien) -- (vidieukhien);
 		\draw[->] (vidieukhien) |- (manhinhhienthi);
 		\draw[->] (vidieukhien) |- (relay);
@@ -41,5 +41,6 @@
 		\draw[<->] (server) -- (app);
 		\draw[<->] (vidieukhien) -- (cambienpzem004t);
 		\draw[<-] (cambienpzem004t) -- (thietbidien);
+		\draw[->] (nguoncongsuat) -- (point2); 
 	\end{tikzpicture}
 \end{document} 
